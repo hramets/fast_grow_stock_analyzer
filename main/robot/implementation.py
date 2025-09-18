@@ -3,10 +3,12 @@ from classes import(
     Yfinance,
     Metrics
 )
+from functions import get_page_tables
 import pandas as pd
 from pandas import DataFrame
 from datetime import datetime
 import logging
+import requests
 
 
 error_logger = logging.getLogger()
@@ -26,25 +28,33 @@ handler.setFormatter(
 error_logger.addHandler(hdlr=handler)
 
 
-def main():
 
-    ## Getting period and checking format
+
+
+def main() -> None:
+    ### Getting period and checking format
 
     right_date_format: bool = False
     while not right_date_format:
-        right_date_format = True
         start_period: str = input("Start period (yyyy-mm-dd): ").strip()
+        try:
+            datetime.strptime(start_period, "%Y-%m-%d")
+        except:
+            print("Wrong data format for start period. Try again.")
+            continue
         end_period: str = input("End period (yyyy-mm-dd): ").strip()
-        for date in [start_period, end_period]:
-            try:
-                datetime.strptime(date)
-            except:
-                print("Wrong data format. Try again.")
-                right_date_format = False
+        try:
+            datetime.strptime(end_period, "%Y-%m-%d")
+        except:
+            print("Wrong data format for end period. Try again.")
+            continue
+        
+        right_date_format = True
     
     
 
     ### Getting an index's stocks data.
+    
     # The robot maintains several indexes: S&P 500, NASDAQ 100, NASDAQ COMPOSITE.
     
     # {index: (wiki web page, table nr on the page)}
@@ -58,11 +68,12 @@ def main():
     
     ## User chooses index.
 
+    index_nr_is_digit: bool = False
     while not index_nr_is_digit:
         index_nr: str = input(
             "\n".join(
                 [
-                    f"{n} - {indexes}" for n, index in enumerate(indexes_data.keys())
+                    f"{n} - {index}" for n, index in enumerate(indexes_data.keys())
                 ]
             ) + "\nPut one of the nr: "
         )
@@ -71,26 +82,36 @@ def main():
         ) else print("Invalid input.")
     
     chosen_index: str = indexes[int(index_nr)]
-    chosen_index_params: tuple[str, int] = indexes_data[chosen_index]
+    chosen_index_url: str = indexes_data[chosen_index][0]
+    chosen_index_table_nr: int = indexes_data[chosen_index][1]
     
     ## Extracting the chosen index tickers from wiki.
     
     try:
-        index_tickers_data: DataFrame = pd.read_html(
-            io=indexes_data[chosen_index_params][0] # web page
-        )[indexes_data[chosen_index_params][1]] # table nr
+        wiki_page_tables = get_page_tables(url=chosen_index_url)
     except Exception as e:
-        error_msg = f"Error in extracting the index tickers data from wiki."
+        error_msg = f"Error in extracting tables from {chosen_index_url}."
         error_logger.critical(
             msg=error_msg + f"\nDescription: {e}"
         )
         print(error_msg + "See logs.")
         return
     
-    index_tickers: list[str] = index_tickers_data[index_tickers_data.columns[0]]\
+    try:
+        tickers_table = wiki_page_tables[chosen_index_table_nr]
+    except Exception as e:
+        error_msg = f"Error in extracting table nr {chosen_index_table_nr} from \
+            {chosen_index_url}."
+        error_logger.critical(
+            msg=error_msg + f"\nDescription: {e}"
+        )
+        print(error_msg + "See logs.")
+        return
+    
+    index_tickers: list[str] = tickers_table[tickers_table.columns[0]] \
         .to_list()
 
-    ## Extracting tickers' stock data and index_data.
+    ### Extracting tickers' stock data and index_data.
     
     yahoo_fin = Yfinance()
 
@@ -100,7 +121,8 @@ def main():
         stocks_data = yahoo_fin.get_price_data(
             tickers=index_tickers,
             period=(
-                datetime.strptime(start_period) - 21, datetime.strptime(end_period)
+                datetime.strptime(start_period, "%Y-%m-%d") - 21,
+                datetime.strptime(end_period, "%Y-%m-%d")
             )
         )
     except Exception as e:
@@ -189,6 +211,7 @@ def main():
         return
     
     max_days_rs_holds_above_ma = len(stocks_data)
+    days_val_is_digit: bool = False
     while not days_val_is_digit:
         days_rs_holds_above_ma = input("Moving average window: ")
         if not days_rs_holds_above_ma.isdigit() or int(days_rs_holds_above_ma) > max_days_rs_holds_above_ma:
@@ -213,4 +236,8 @@ def main():
     
     ## Result
     print(", ".join(list(full_filtered_stocks_data.columns)))
+
+
+if __name__ == "__main__":
+    main()
     

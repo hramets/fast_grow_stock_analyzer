@@ -1,0 +1,21 @@
+root 2025-09-10 21:18:25,167 Error in extracting the index tickers data from wiki.
+Description: ('https://en.wikipedia.org/wiki/Nasdaq-100', 3)
+Line: 91
+root 2025-09-10 21:19:23,017 Error in extracting the index tickers data from wiki.
+Description: ('https://en.wikipedia.org/wiki/Nasdaq-100', 3)
+Line: 91
+root 2025-09-10 21:21:42,651 Error in extracting the index tickers data from wiki.
+Description: ('https://en.wikipedia.org/wiki/Nasdaq-100', 3)
+Line: 91
+root 2025-09-10 21:21:51,732 Error in extracting the index tickers data from wiki.
+Description: ('https://en.wikipedia.org/wiki/Nasdaq-100', 3)
+Line: 91
+root 2025-09-10 21:36:21,786 Error in extracting the index tickers data from wiki.
+Description: ('https://en.wikipedia.org/wiki/Nasdaq-100', 3)
+Line: 90
+root 2025-09-10 21:37:26,452 Error in extracting the index tickers data from wiki.
+Description: ('https://en.wikipedia.org/wiki/List_of_S%26P_500_companies', 0)
+Line: 90
+root 2025-09-17 20:48:37,342 Error in extracting the index tickers data from wiki.
+Description: ('https://en.wikipedia.org/wiki/List_of_S%26P_500_companies', 0)
+Line: 91

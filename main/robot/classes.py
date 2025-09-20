@@ -25,9 +25,9 @@ class Yfinance:
         return price_data
 
 
-class Metrics:
+class MetricsCalculator:
     """
-    Class implements metrics that involved in analysis.
+    Class calculates metrics for stocks data that involved in analysis.
     """
     
     @staticmethod
@@ -44,8 +44,31 @@ class Metrics:
         )
         return rs
     
+    def rs_on_data(
+        self,
+        stocks_data: DataFrame,
+        market_ticker: str
+    ) -> DataFrame:
+        """
+        Method calculates a relative strength for a dataframe with stock prices.
+        """
+        results: dict[tuple[str, str], float] = {}
+        
+        # Tickers are first lvl cols.
+        tickers = stocks_data.columns.get_level_values(1).unique()
+        for ticker in tickers:
+            results[("rs", ticker)] = self.rs(
+                stock_price=stocks_data[("Close", ticker)],
+                market_price=stocks_data[("Close", market_ticker)]
+            )
+        
+        results_df: DataFrame = pd.DataFrame(results)
+        stocks_data = pd.concat([stocks_data, results_df], axis=1)
+        
+        return stocks_data
+    
     @staticmethod
-    def rs_ma(
+    def rs_ma_on_data(
         stocks_data: DataFrame,
         ma_window: int
     ) -> DataFrame:
@@ -54,10 +77,16 @@ class Metrics:
         Moving average can be calculated for period not surpassing 21 days (one month).
         NB! Dataframe must contain a "rs" column
         """
-        # Tickers are top lvl cols.
-        tickers = stocks_data.columns.get_level_values(0).unique()
+        results: dict[tuple[str, str], float] = {}
+        
+        # Tickers are second lvl cols.
+        tickers = stocks_data.columns.get_level_values(1).unique()
         for ticker in tickers:
-            stocks_data[ticker, "rs_ma"] = stocks_data[ticker, "rs"].rolling(window=ma_window).mean()
+            results[("rs_ma", ticker)] = stocks_data[("rs", ticker)].rolling(window=ma_window).mean()
+        
+        results_df: DataFrame = pd.DataFrame(results)
+        stocks_data = pd.concat([stocks_data, results_df], axis=1)
+        
         return stocks_data
         
 
@@ -75,15 +104,14 @@ class DataFilter:
         NB! Tickers must be top level columns.
         Data must contain the "rs" column.
         """
-        tickers = stocks_data.columns.get_level_values(0).unique()
+        tickers = stocks_data.columns.get_level_values(1).unique()
         for ticker in tickers:
-            rs_period_start: float = stocks_data.loc[0, (ticker, "rs")]
-            rs_period_end: float = stocks_data.loc[len(stocks_data) - 1, (ticker, "rs")]
-                    
+            rs_period_start: float = stocks_data.iloc[0][("rs", ticker)]
+            rs_period_end: float = stocks_data.iloc[len(stocks_data) - 1][("rs", ticker)]
 
             stocks_data = stocks_data.drop(
                 columns=[ticker],
-                level=0
+                level=1
             ) if not rs_period_end > rs_period_start else stocks_data
         
         return stocks_data
@@ -101,7 +129,7 @@ class DataFilter:
         # The main idea of the algorithm is it starts from the end checking if rs is higher than ma.
         # If a rs has been held above ma a defined amount of days a stock remains to a dataframe.
         
-        stocks_tickers: list[str] = list(stocks_data.columns.get_level_values(0).unique())
+        stocks_tickers: list[str] = list(stocks_data.columns.get_level_values(1).unique())
         
         for ticker in stocks_tickers:
             row_nr: int = len(stocks_data) - 1
@@ -109,8 +137,8 @@ class DataFilter:
             
             postive_result: bool = False
             while row_nr != -1:
-                rs: float = stocks_data.loc[row_nr, (ticker, "rs")]
-                ma: float = stocks_data.loc[row_nr, (ticker, "rs_ma")]
+                rs: float = stocks_data.iloc[row_nr][("rs", ticker)]
+                ma: float = stocks_data.iloc[row_nr][("rs_ma", ticker)]
                 
                 if rs < ma or pd.isna(ma):
                     break
@@ -124,7 +152,7 @@ class DataFilter:
 
             stocks_data = stocks_data.drop(
                 columns=[ticker],
-                level=0
+                level=1
             ) if not postive_result else stocks_data
  
         return stocks_data

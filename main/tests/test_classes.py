@@ -1,7 +1,7 @@
 import unittest
 from robot.classes import(
     Yfinance,
-    Metrics,
+    MetricsCalculator,
     DataFilter
 )
 from pandas import(
@@ -87,8 +87,8 @@ class TestDataFilterClass(unittest.TestCase):
             ],
             columns=multi_cols
         )
-        calculate_rs: Callable[[float, float], float] = Metrics().rs
-        calculate_rs_ma: Callable[[DataFrame], DataFrame] = Metrics().rs_ma
+        calculate_rs: Callable[[float, float], float] = MetricsCalculator().rs
+        calculate_rs_ma: Callable[[DataFrame], DataFrame] = MetricsCalculator().rs_ma_on_data
         for ticker, _ in multi_cols: 
             df[ticker, "rs"] = calculate_rs(
                 stock_price=df[ticker, "close_price"],
@@ -177,7 +177,7 @@ class TestMetricsClass(unittest.TestCase):
             ],
                         columns=["close_price", "market_price"]
         )
-        calculate_rs: Callable[[float, float], float] = Metrics().rs
+        calculate_rs: Callable[[float, float], float] = MetricsCalculator().rs
         df["rs"] = calculate_rs(
             stock_price=df["close_price"],
             market_price=df["market_price"]
@@ -185,7 +185,7 @@ class TestMetricsClass(unittest.TestCase):
         self.df = df
     
     def test_rs_ma(self):
-        calculate_rs_ma: Callable[[DataFrame], DataFrame] = Metrics().rs_ma
+        calculate_rs_ma: Callable[[DataFrame], DataFrame] = MetricsCalculator().rs_ma_on_data
         df: DataFrame = calculate_rs_ma(stock_data=self.df, ma_window=2)
         
         row_1_ma = df.loc[0, "rs_ma"]

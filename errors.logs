@@ -19,3 +19,312 @@ Line: 90
 root 2025-09-17 20:48:37,342 Error in extracting the index tickers data from wiki.
 Description: ('https://en.wikipedia.org/wiki/List_of_S%26P_500_companies', 0)
 Line: 91
+yfinance 2025-09-18 23:46:04,589 
+2 Failed downloads:
+Line: 184
+yfinance 2025-09-18 23:46:04,593 ['BRK.B']: YFTzMissingError('possibly delisted; no timezone found')
+Line: 197
+yfinance 2025-09-18 23:46:04,594 ['BF.B']: YFPricesMissingError('possibly delisted; no price data found  (1d 2024-12-11 00:00:00 -> 2025-08-01 00:00:00)')
+Line: 197
+yfinance 2025-09-19 00:06:23,030 
+2 Failed downloads:
+Line: 184
+yfinance 2025-09-19 00:06:23,031 ['BF.B']: YFPricesMissingError('possibly delisted; no price data found  (1d 2024-04-10 00:00:00 -> 2024-06-01 00:00:00)')
+Line: 197
+yfinance 2025-09-19 00:06:23,031 ['BRK.B']: YFTzMissingError('possibly delisted; no timezone found')
+Line: 197
+yfinance 2025-09-19 00:06:37,482 
+2 Failed downloads:
+Line: 184
+yfinance 2025-09-19 00:06:37,482 ['S&P']: YFTzMissingError('possibly delisted; no timezone found')
+Line: 197
+yfinance 2025-09-19 00:06:37,482 ['500']: HTTPError('HTTP Error 404: ')
+Line: 197
+yfinance 2025-09-19 00:07:58,395 
+2 Failed downloads:
+Line: 184
+yfinance 2025-09-19 00:07:58,396 ['BF.B']: YFPricesMissingError('possibly delisted; no price data found  (1d 2024-04-10 00:00:00 -> 2024-06-01 00:00:00)')
+Line: 197
+yfinance 2025-09-19 00:07:58,396 ['BRK.B']: YFTzMissingError('possibly delisted; no timezone found')
+Line: 197
+yfinance 2025-09-19 00:08:36,298 
+2 Failed downloads:
+Line: 184
+yfinance 2025-09-19 00:08:36,299 ['BF.B']: YFPricesMissingError('possibly delisted; no price data found  (1d 2024-04-10 00:00:00 -> 2024-06-01 00:00:00)')
+Line: 197
+yfinance 2025-09-19 00:08:36,299 ['BRK.B']: YFTzMissingError('possibly delisted; no timezone found')
+Line: 197
+yfinance 2025-09-19 00:09:17,639 
+2 Failed downloads:
+Line: 184
+yfinance 2025-09-19 00:09:17,639 ['S&P']: YFTzMissingError('possibly delisted; no timezone found')
+Line: 197
+yfinance 2025-09-19 00:09:17,639 ['500']: HTTPError('HTTP Error 404: ')
+Line: 197
+yfinance 2025-09-19 00:16:39,616 
+2 Failed downloads:
+Line: 184
+yfinance 2025-09-19 00:16:39,617 ['BF.B']: YFPricesMissingError('possibly delisted; no price data found  (1d 2024-04-10 00:00:00 -> 2024-06-01 00:00:00)')
+Line: 197
+yfinance 2025-09-19 00:16:39,617 ['BRK.B']: YFTzMissingError('possibly delisted; no timezone found')
+Line: 197
+yfinance 2025-09-19 00:17:15,650 
+2 Failed downloads:
+Line: 184
+yfinance 2025-09-19 00:17:15,651 ['500']: YFTzMissingError('possibly delisted; no timezone found')
+Line: 197
+yfinance 2025-09-19 00:17:15,651 ['S&P']: HTTPError('HTTP Error 404: ')
+Line: 197
+yfinance 2025-09-20 10:07:21,315 
+2 Failed downloads:
+Line: 184
+yfinance 2025-09-20 10:07:21,369 ['BF.B']: YFPricesMissingError('possibly delisted; no price data found  (1d 2024-04-10 00:00:00 -> 2024-06-01 00:00:00)')
+Line: 197
+yfinance 2025-09-20 10:07:21,369 ['BRK.B']: YFTzMissingError('possibly delisted; no timezone found')
+Line: 197
+yfinance 2025-09-20 10:07:22,701 
+2 Failed downloads:
+Line: 184
+yfinance 2025-09-20 10:07:22,701 ['S&P']: YFTzMissingError('possibly delisted; no timezone found')
+Line: 197
+yfinance 2025-09-20 10:07:22,702 ['500']: HTTPError('HTTP Error 404: ')
+Line: 197
+yfinance 2025-09-20 10:17:59,118 
+2 Failed downloads:
+Line: 184
+yfinance 2025-09-20 10:17:59,120 ['BF.B']: YFPricesMissingError('possibly delisted; no price data found  (1d 2024-04-10 00:00:00 -> 2024-06-01 00:00:00)')
+Line: 197
+yfinance 2025-09-20 10:17:59,120 ['BRK.B']: YFTzMissingError('possibly delisted; no timezone found')
+Line: 197
+yfinance 2025-09-20 10:18:00,323 
+2 Failed downloads:
+Line: 184
+yfinance 2025-09-20 10:18:00,323 ['500']: YFTzMissingError('possibly delisted; no timezone found')
+Line: 197
+yfinance 2025-09-20 10:18:00,323 ['S&P']: HTTPError('HTTP Error 404: ')
+Line: 197
+yfinance 2025-09-20 12:12:04,725 
+2 Failed downloads:
+Line: 184
+yfinance 2025-09-20 12:12:04,727 ['BRK.B']: YFTzMissingError('possibly delisted; no timezone found')
+Line: 197
+yfinance 2025-09-20 12:12:04,727 ['BF.B']: YFPricesMissingError('possibly delisted; no price data found  (1d 2024-04-10 00:00:00 -> 2024-06-01 00:00:00)')
+Line: 197
+yfinance 2025-09-20 12:12:05,868 
+2 Failed downloads:
+Line: 184
+yfinance 2025-09-20 12:12:05,869 ['S&P']: YFTzMissingError('possibly delisted; no timezone found')
+Line: 197
+yfinance 2025-09-20 12:12:05,869 ['500']: HTTPError('HTTP Error 404: ')
+Line: 197
+yfinance 2025-09-20 12:16:36,989 
+2 Failed downloads:
+Line: 184
+yfinance 2025-09-20 12:16:36,991 ['BF.B']: YFPricesMissingError('possibly delisted; no price data found  (1d 2024-04-10 00:00:00 -> 2024-06-01 00:00:00)')
+Line: 197
+yfinance 2025-09-20 12:16:36,991 ['BRK.B']: YFTzMissingError('possibly delisted; no timezone found')
+Line: 197
+yfinance 2025-09-20 12:16:38,112 
+2 Failed downloads:
+Line: 184
+yfinance 2025-09-20 12:16:38,112 ['S&P']: YFTzMissingError('possibly delisted; no timezone found')
+Line: 197
+yfinance 2025-09-20 12:16:38,113 ['500']: HTTPError('HTTP Error 404: ')
+Line: 197
+yfinance 2025-09-20 14:07:59,682 
+2 Failed downloads:
+Line: 184
+yfinance 2025-09-20 14:07:59,685 ['BF.B']: YFPricesMissingError('possibly delisted; no price data found  (1d 2024-04-10 00:00:00 -> 2024-06-01 00:00:00)')
+Line: 197
+yfinance 2025-09-20 14:07:59,685 ['BRK.B']: YFTzMissingError('possibly delisted; no timezone found')
+Line: 197
+yfinance 2025-09-20 14:08:00,991 
+2 Failed downloads:
+Line: 184
+yfinance 2025-09-20 14:08:00,991 ['500']: YFTzMissingError('possibly delisted; no timezone found')
+Line: 197
+yfinance 2025-09-20 14:08:00,991 ['S&P']: HTTPError('HTTP Error 404: ')
+Line: 197
+yfinance 2025-09-20 14:19:13,155 
+2 Failed downloads:
+Line: 184
+yfinance 2025-09-20 14:19:13,157 ['BRK.B']: YFTzMissingError('possibly delisted; no timezone found')
+Line: 197
+yfinance 2025-09-20 14:19:13,157 ['BF.B']: YFPricesMissingError('possibly delisted; no price data found  (1d 2024-04-10 00:00:00 -> 2024-06-01 00:00:00)')
+Line: 197
+yfinance 2025-09-20 14:19:14,289 
+2 Failed downloads:
+Line: 184
+yfinance 2025-09-20 14:19:14,289 ['500']: YFTzMissingError('possibly delisted; no timezone found')
+Line: 197
+yfinance 2025-09-20 14:19:14,289 ['S&P']: HTTPError('HTTP Error 404: ')
+Line: 197
+yfinance 2025-09-20 14:20:29,596 
+2 Failed downloads:
+Line: 184
+yfinance 2025-09-20 14:20:29,598 ['BF.B']: YFPricesMissingError('possibly delisted; no price data found  (1d 2024-04-10 00:00:00 -> 2024-06-01 00:00:00)')
+Line: 197
+yfinance 2025-09-20 14:20:29,599 ['BRK.B']: YFTzMissingError('possibly delisted; no timezone found')
+Line: 197
+yfinance 2025-09-20 14:20:30,743 
+2 Failed downloads:
+Line: 184
+yfinance 2025-09-20 14:20:30,743 ['S&P']: YFTzMissingError('possibly delisted; no timezone found')
+Line: 197
+yfinance 2025-09-20 14:20:30,743 ['500']: HTTPError('HTTP Error 404: ')
+Line: 197
+yfinance 2025-09-20 14:23:34,248 
+2 Failed downloads:
+Line: 184
+yfinance 2025-09-20 14:23:34,251 ['BF.B']: YFPricesMissingError('possibly delisted; no price data found  (1d 2024-04-10 00:00:00 -> 2024-06-01 00:00:00)')
+Line: 197
+yfinance 2025-09-20 14:23:34,251 ['BRK.B']: YFTzMissingError('possibly delisted; no timezone found')
+Line: 197
+yfinance 2025-09-20 14:25:10,291 
+2 Failed downloads:
+Line: 184
+yfinance 2025-09-20 14:25:10,294 ['BF.B']: YFPricesMissingError('possibly delisted; no price data found  (1d 2024-04-10 00:00:00 -> 2024-06-01 00:00:00)')
+Line: 197
+yfinance 2025-09-20 14:25:10,294 ['BRK.B']: YFTzMissingError('possibly delisted; no timezone found')
+Line: 197
+yfinance 2025-09-20 14:27:35,925 
+2 Failed downloads:
+Line: 184
+yfinance 2025-09-20 14:27:35,927 ['BRK.B']: YFTzMissingError('possibly delisted; no timezone found')
+Line: 197
+yfinance 2025-09-20 14:27:35,927 ['BF.B']: YFPricesMissingError('possibly delisted; no price data found  (1d 2024-04-10 00:00:00 -> 2024-06-01 00:00:00)')
+Line: 197
+yfinance 2025-09-20 14:29:27,729 
+2 Failed downloads:
+Line: 184
+yfinance 2025-09-20 14:29:27,731 ['BRK.B']: YFTzMissingError('possibly delisted; no timezone found')
+Line: 197
+yfinance 2025-09-20 14:29:27,731 ['BF.B']: YFPricesMissingError('possibly delisted; no price data found  (1d 2024-04-10 00:00:00 -> 2024-06-01 00:00:00)')
+Line: 197
+yfinance 2025-09-20 14:35:35,902 
+2 Failed downloads:
+Line: 184
+yfinance 2025-09-20 14:35:35,904 ['BRK.B']: YFTzMissingError('possibly delisted; no timezone found')
+Line: 197
+yfinance 2025-09-20 14:35:35,904 ['BF.B']: YFPricesMissingError('possibly delisted; no price data found  (1d 2024-04-10 00:00:00 -> 2024-06-01 00:00:00)')
+Line: 197
+yfinance 2025-09-20 20:16:35,826 
+2 Failed downloads:
+Line: 184
+yfinance 2025-09-20 20:16:35,892 ['BF.B']: YFPricesMissingError('possibly delisted; no price data found  (1d 2024-04-10 00:00:00 -> 2024-06-01 00:00:00)')
+Line: 197
+yfinance 2025-09-20 20:16:35,892 ['BRK.B']: YFTzMissingError('possibly delisted; no timezone found')
+Line: 197
+root 2025-09-20 20:16:39,078 Error in filtering stocks by rs.
+Description: ('Adj Close', 'rs')
+Line: 205
+yfinance 2025-09-20 20:19:13,317 
+2 Failed downloads:
+Line: 184
+yfinance 2025-09-20 20:19:13,319 ['BF.B']: YFPricesMissingError('possibly delisted; no price data found  (1d 2024-04-10 00:00:00 -> 2024-06-01 00:00:00)')
+Line: 197
+yfinance 2025-09-20 20:19:13,319 ['BRK.B']: YFTzMissingError('possibly delisted; no timezone found')
+Line: 197
+root 2025-09-20 20:19:16,640 Error in filtering stocks by rs.
+Description: ('Adj Close', 'rs')
+Line: 205
+yfinance 2025-09-20 20:50:49,441 
+2 Failed downloads:
+Line: 184
+yfinance 2025-09-20 20:50:49,443 ['BF.B']: YFPricesMissingError('possibly delisted; no price data found  (1d 2024-04-10 00:00:00 -> 2024-06-01 00:00:00)')
+Line: 197
+yfinance 2025-09-20 20:50:49,443 ['BRK.B']: YFTzMissingError('possibly delisted; no timezone found')
+Line: 197
+root 2025-09-20 20:50:49,705 Error in calculating rs.
+Description: ('Adj Close', 'Close')
+Line: 154
+yfinance 2025-09-20 20:52:56,823 
+2 Failed downloads:
+Line: 184
+yfinance 2025-09-20 20:52:56,873 ['BRK.B']: YFTzMissingError('possibly delisted; no timezone found')
+Line: 197
+yfinance 2025-09-20 20:52:56,873 ['BF.B']: YFPricesMissingError('possibly delisted; no price data found  (1d 2024-04-10 00:00:00 -> 2024-06-01 00:00:00)')
+Line: 197
+yfinance 2025-09-20 20:55:28,391 
+2 Failed downloads:
+Line: 184
+yfinance 2025-09-20 20:55:28,394 ['BRK.B']: YFTzMissingError('possibly delisted; no timezone found')
+Line: 197
+yfinance 2025-09-20 20:55:28,394 ['BF.B']: YFPricesMissingError('possibly delisted; no price data found  (1d 2024-04-10 00:00:00 -> 2024-06-01 00:00:00)')
+Line: 197
+yfinance 2025-09-20 20:57:32,927 
+2 Failed downloads:
+Line: 184
+yfinance 2025-09-20 20:57:32,929 ['BF.B']: YFPricesMissingError('possibly delisted; no price data found  (1d 2024-04-10 00:00:00 -> 2024-06-01 00:00:00)')
+Line: 197
+yfinance 2025-09-20 20:57:32,929 ['BRK.B']: YFTzMissingError('possibly delisted; no timezone found')
+Line: 197
+yfinance 2025-09-20 20:58:43,404 
+2 Failed downloads:
+Line: 184
+yfinance 2025-09-20 20:58:43,405 ['BRK.B']: YFTzMissingError('possibly delisted; no timezone found')
+Line: 197
+yfinance 2025-09-20 20:58:43,406 ['BF.B']: YFPricesMissingError('possibly delisted; no price data found  (1d 2024-04-10 00:00:00 -> 2024-06-01 00:00:00)')
+Line: 197
+yfinance 2025-09-20 21:03:29,908 
+2 Failed downloads:
+Line: 184
+yfinance 2025-09-20 21:03:29,910 ['BF.B']: YFPricesMissingError('possibly delisted; no price data found  (1d 2024-04-10 00:00:00 -> 2024-06-01 00:00:00)')
+Line: 197
+yfinance 2025-09-20 21:03:29,910 ['BRK.B']: YFTzMissingError('possibly delisted; no timezone found')
+Line: 197
+yfinance 2025-09-20 21:08:51,996 
+2 Failed downloads:
+Line: 184
+yfinance 2025-09-20 21:08:51,998 ['BRK.B']: YFTzMissingError('possibly delisted; no timezone found')
+Line: 197
+yfinance 2025-09-20 21:08:51,998 ['BF.B']: YFPricesMissingError('possibly delisted; no price data found  (1d 2024-04-10 00:00:00 -> 2024-06-01 00:00:00)')
+Line: 197
+yfinance 2025-09-20 21:10:20,643 
+2 Failed downloads:
+Line: 184
+yfinance 2025-09-20 21:10:20,645 ['BF.B']: YFPricesMissingError('possibly delisted; no price data found  (1d 2024-04-10 00:00:00 -> 2024-06-01 00:00:00)')
+Line: 197
+yfinance 2025-09-20 21:10:20,645 ['BRK.B']: YFTzMissingError('possibly delisted; no timezone found')
+Line: 197
+root 2025-09-20 21:10:46,275 Error in filtering stocks by rs.
+Description: 0
+Line: 181
+yfinance 2025-09-20 21:12:38,237 
+2 Failed downloads:
+Line: 184
+yfinance 2025-09-20 21:12:38,239 ['BRK.B']: YFTzMissingError('possibly delisted; no timezone found')
+Line: 197
+yfinance 2025-09-20 21:12:38,239 ['BF.B']: YFPricesMissingError('possibly delisted; no price data found  (1d 2024-04-10 00:00:00 -> 2024-06-01 00:00:00)')
+Line: 197
+root 2025-09-20 21:13:38,643 Error in filtering stocks by rs.
+Description: 0
+Line: 181
+yfinance 2025-09-20 21:18:41,668 
+2 Failed downloads:
+Line: 184
+yfinance 2025-09-20 21:18:41,670 ['BRK.B']: YFTzMissingError('possibly delisted; no timezone found')
+Line: 197
+yfinance 2025-09-20 21:18:41,670 ['BF.B']: YFPricesMissingError('possibly delisted; no price data found  (1d 2024-04-10 00:00:00 -> 2024-06-01 00:00:00)')
+Line: 197
+yfinance 2025-09-20 21:25:44,303 
+2 Failed downloads:
+Line: 184
+yfinance 2025-09-20 21:25:44,305 ['BRK.B']: YFTzMissingError('possibly delisted; no timezone found')
+Line: 197
+yfinance 2025-09-20 21:25:44,305 ['BF.B']: YFPricesMissingError('possibly delisted; no price data found  (1d 2024-04-10 00:00:00 -> 2024-06-01 00:00:00)')
+Line: 197
+yfinance 2025-09-20 21:33:28,495 
+2 Failed downloads:
+Line: 184
+yfinance 2025-09-20 21:33:28,498 ['BRK.B']: YFTzMissingError('possibly delisted; no timezone found')
+Line: 197
+yfinance 2025-09-20 21:33:28,498 ['BF.B']: YFPricesMissingError('possibly delisted; no price data found  (1d 2024-04-10 00:00:00 -> 2024-06-01 00:00:00)')
+Line: 197
+yfinance 2025-09-20 21:36:39,723 
+2 Failed downloads:
+Line: 184
+yfinance 2025-09-20 21:36:39,724 ['BF.B']: YFPricesMissingError('possibly delisted; no price data found  (1d 2024-04-10 00:00:00 -> 2024-06-01 00:00:00)')
+Line: 197
+yfinance 2025-09-20 21:36:39,724 ['BRK.B']: YFTzMissingError('possibly delisted; no timezone found')
+Line: 197

@@ -1,14 +1,14 @@
 from classes import(
     DataFilter,
     Yfinance,
-    Metrics
+    MetricsCalculator
 )
 from functions import get_page_tables
+import config
 import pandas as pd
 from pandas import DataFrame
-from datetime import datetime
+from datetime import datetime, timedelta
 import logging
-import requests
 
 
 error_logger = logging.getLogger()
@@ -28,28 +28,28 @@ handler.setFormatter(
 error_logger.addHandler(hdlr=handler)
 
 
-
-
-
 def main() -> None:
     ### Getting period and checking format
 
-    right_date_format: bool = False
-    while not right_date_format:
-        start_period: str = input("Start period (yyyy-mm-dd): ").strip()
-        try:
-            datetime.strptime(start_period, "%Y-%m-%d")
-        except:
-            print("Wrong data format for start period. Try again.")
-            continue
-        end_period: str = input("End period (yyyy-mm-dd): ").strip()
-        try:
-            datetime.strptime(end_period, "%Y-%m-%d")
-        except:
-            print("Wrong data format for end period. Try again.")
-            continue
-        
-        right_date_format = True
+    # right_date_format: bool = False
+    # while not right_date_format:
+    #     start_period: str = input("Start period (yyyy-mm-dd): ").strip()
+    #     try:
+    #         datetime.strptime(start_period, "%Y-%m-%d")
+    #     except:
+    #         print("Wrong data format for start period. Try again.")
+    #         continue
+    #     end_period: str = input("End period (yyyy-mm-dd): ").strip()
+    #     try:
+    #         datetime.strptime(end_period, "%Y-%m-%d")
+    #     except:
+    #         print("Wrong data format for end period. Try again.")
+    #         continue
+    #     right_date_format = True
+    end_period: str = "2024-06-01" # Testing
+    start_period: str = "2024-05-01" # Testing
+    start_period_dt = datetime.strptime(start_period, "%Y-%m-%d")
+    end_period_dt = datetime.strptime(end_period, "%Y-%m-%d")
     
     
 
@@ -60,11 +60,8 @@ def main() -> None:
     # {index: (wiki web page, table nr on the page)}
     # On wiki an index's page has several tables.
     # A position of the table with tickers list always differs.
-    indexes_data: dict[str, tuple[str, int]] = {
-        "S&P 500": ("https://en.wikipedia.org/wiki/List_of_S%26P_500_companies", 0),
-        "NASDAQ 100": ("https://en.wikipedia.org/wiki/Nasdaq-100", 3)
-    }
-    indexes: list = list(indexes_data.keys())
+    indexes_info = config.INDEXES_INFO
+    indexes: list = list(indexes_info.keys())
     
     ## User chooses index.
 
@@ -73,17 +70,18 @@ def main() -> None:
         index_nr: str = input(
             "\n".join(
                 [
-                    f"{n} - {index}" for n, index in enumerate(indexes_data.keys())
+                    f"{n} - {index}" for n, index in enumerate(indexes_info.keys())
                 ]
             ) + "\nPut one of the nr: "
         )
         index_nr_is_digit = True if (
-            index_nr.isdigit() and int(index_nr) in range(len(indexes_data.keys()))
+            index_nr.isdigit() and int(index_nr) in range(len(indexes_info.keys()))
         ) else print("Invalid input.")
     
     chosen_index: str = indexes[int(index_nr)]
-    chosen_index_url: str = indexes_data[chosen_index][0]
-    chosen_index_table_nr: int = indexes_data[chosen_index][1]
+    chosen_index_url: str = indexes_info[chosen_index]["url"]
+    chosen_index_table_nr: int = indexes_info[chosen_index]["table_nr"]
+    chosen_index_ticker_name: str = indexes_info[chosen_index]["ticker_name"]
     
     ## Extracting the chosen index tickers from wiki.
     
@@ -108,8 +106,9 @@ def main() -> None:
         print(error_msg + "See logs.")
         return
     
-    index_tickers: list[str] = tickers_table[tickers_table.columns[0]] \
+    tickers: list[str] = tickers_table[tickers_table.columns[0]] \
         .to_list()
+    tickers.append(chosen_index_ticker_name) # For rs calculating.
 
     ### Extracting tickers' stock data and index_data.
     
@@ -118,11 +117,11 @@ def main() -> None:
     # For moving average date requires a longer period.
     # Redudant 21 days data will be deleted.
     try:
-        stocks_data = yahoo_fin.get_price_data(
-            tickers=index_tickers,
+        stocks_data_for_ma = yahoo_fin.get_price_data(
+            tickers=tickers,
             period=(
-                datetime.strptime(start_period, "%Y-%m-%d") - 21,
-                datetime.strptime(end_period, "%Y-%m-%d")
+                start_period_dt - timedelta(days=21),
+                end_period_dt
             )
         )
     except Exception as e:
@@ -133,32 +132,15 @@ def main() -> None:
         print(error_msg + "See logs.")
         return
     
-    try:
-        index_data = yahoo_fin.get_price_data(tickers=chosen_index)
-    except Exception as e:
-        error_msg = "Error in extracting the index data."
-        error_logger.critical(
-            msg=error_msg + f"\nDescription: {e}"
-        )
-        print(error_msg + "See logs.")
-        return
-    
     ## Calculating metrics.
     
-    metrics = Metrics()
-    
-    # In the initial data the first col lvl is prices, the second - tickers.
-    # Should be changed according to methods, that will be used.
-    multi_lvl_cols: pd.MultiIndex = stocks_data.columns
-    new_multi_lvl_cols = multi_lvl_cols.reorder_levels(order=[1, 0])
-    stocks_data.columns = new_multi_lvl_cols
+    metrics = MetricsCalculator()
     
     try:
-        for stock in index_tickers:
-            stocks_data[stock, "rs"] = metrics.rs(
-                stock_price=stocks_data[stock, "Close"],
-                market_price=index_data["Close"]
-            )
+        stocks_data_for_ma = metrics.rs_on_data(
+            stocks_data=stocks_data_for_ma,
+            market_ticker=chosen_index_ticker_name
+        )
     except Exception as e:
         error_msg = "Error in calculating rs."
         error_logger.critical(
@@ -167,22 +149,14 @@ def main() -> None:
         print(error_msg + "See logs.")
         return
     
-    while not ma_win_is_digit:
-        ma_window = input("Moving average window (1-21): ")
-        if not ma_window.isdigit() or not 0 < int(ma_window) < 22:
-            print("Invalid input.")
-            ma_win_is_digit = False
-        else:
-            ma_window = int(ma_window)
-            ma_win_is_digit = True
-        
+    ma_window = config.MA_WINDOW
         
     try: 
-        stocks_data = metrics.rs_ma(
-            stocks_data=stocks_data,
+        stocks_data_for_ma = metrics.rs_ma_on_data(
+            stocks_data=stocks_data_for_ma,
             ma_window=ma_window
         )
-    except:
+    except Exception as e:
         error_msg = "Error in calculating moving average."
         error_logger.critical(
             msg=error_msg + f"\nDescription: {e}"
@@ -191,13 +165,13 @@ def main() -> None:
         return
 
     # Cutting the tail with 21 days for ma calculating.
-    
-    stocks_data = stocks_data[stocks_data["Date"] > start_period]
+
+    stocks_data = stocks_data_for_ma[stocks_data_for_ma.index >= start_period]
     
     ## Filterting stocks
     
     stock_filter = DataFilter()
-    
+
     try:
         rs_filtered_stocks_data = stock_filter.has_rs_grown(
             stocks_data=stocks_data
@@ -235,7 +209,13 @@ def main() -> None:
         return
     
     ## Result
-    print(", ".join(list(full_filtered_stocks_data.columns)))
+    print(
+        ", ".join(
+            list(
+                full_filtered_stocks_data.columns.get_level_values(1).unique()
+            )
+        )
+    )
 
 
 if __name__ == "__main__":

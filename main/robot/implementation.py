@@ -31,23 +31,21 @@ error_logger.addHandler(hdlr=handler)
 def main() -> None:
     ### Getting period and checking format
 
-    # right_date_format: bool = False
-    # while not right_date_format:
-    #     start_period: str = input("Start period (yyyy-mm-dd): ").strip()
-    #     try:
-    #         datetime.strptime(start_period, "%Y-%m-%d")
-    #     except:
-    #         print("Wrong data format for start period. Try again.")
-    #         continue
-    #     end_period: str = input("End period (yyyy-mm-dd): ").strip()
-    #     try:
-    #         datetime.strptime(end_period, "%Y-%m-%d")
-    #     except:
-    #         print("Wrong data format for end period. Try again.")
-    #         continue
-    #     right_date_format = True
-    end_period: str = "2024-06-01" # Testing
-    start_period: str = "2024-05-01" # Testing
+    right_date_format: bool = False
+    while not right_date_format:
+        start_period: str = input("Start period (yyyy-mm-dd): ").strip()
+        try:
+            datetime.strptime(start_period, "%Y-%m-%d")
+        except:
+            print("Wrong data format for start period. Try again.")
+            continue
+        end_period: str = input("End period (yyyy-mm-dd): ").strip()
+        try:
+            datetime.strptime(end_period, "%Y-%m-%d")
+        except:
+            print("Wrong data format for end period. Try again.")
+            continue
+        right_date_format = True
     start_period_dt = datetime.strptime(start_period, "%Y-%m-%d")
     end_period_dt = datetime.strptime(end_period, "%Y-%m-%d")
     
@@ -216,7 +214,6 @@ def main() -> None:
             )
         )
     )
-
 
 if __name__ == "__main__":
     main()

@@ -328,3 +328,14 @@ yfinance 2025-09-20 21:36:39,724 ['BF.B']: YFPricesMissingError('possibly delist
 Line: 197
 yfinance 2025-09-20 21:36:39,724 ['BRK.B']: YFTzMissingError('possibly delisted; no timezone found')
 Line: 197
+yfinance 2025-09-21 10:56:26,302 
+4 Failed downloads:
+Line: 184
+yfinance 2025-09-21 10:56:26,339 ['IFF']: Timeout('Failed to perform, curl: (28) Operation timed out after 10006 milliseconds with 0 bytes received. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.')
+Line: 197
+yfinance 2025-09-21 10:56:26,339 ['VTR']: Timeout('Failed to perform, curl: (28) Operation timed out after 10005 milliseconds with 36389 bytes received. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.')
+Line: 197
+yfinance 2025-09-21 10:56:26,339 ['BRK.B']: YFTzMissingError('possibly delisted; no timezone found')
+Line: 197
+yfinance 2025-09-21 10:56:26,339 ['BF.B']: YFPricesMissingError('possibly delisted; no price data found  (1d 2019-12-11 00:00:00 -> 2025-09-21 00:00:00)')
+Line: 197
